@@ -48,7 +48,7 @@ module.exports = function( ret, conf, settings, opt ) {
         }
 
         var reg = /(\/\*[\s\S]*?(?:\*\/|$))|(?:@import\s+)?\burl\s*\(\s*("(?:[^\\"\r\n\f]|\\[\s\S])*"|'(?:[^\\'\n\r\f]|\\[\s\S])*'|[^)}\s]+)\s*\)(\s*;?)/g;
-        content.replace(reg, function(m, comment, url, last ){
+        content = content.replace(reg, function(m, comment, url, last ){
             if(url){
                 if(m.indexOf('@') === 0){
                     return '@import url(' + relative_to_file(url) + ')' + last;
