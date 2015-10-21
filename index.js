@@ -38,6 +38,28 @@ module.exports = function( ret, conf, settings, opt ) {
 
     function absolutePathToRelativePath ( file ) {
         var content = file.getContent();
+        var f_url = file.uri;
+
+        var relative_to_file =  function( url ) {
+            if( url[0] == '/' ){
+                return path.relative(f_url, url);
+            }
+            return url;
+        }
+
+        var reg = /(\/\*[\s\S]*?(?:\*\/|$))|(?:@import\s+)?\burl\s*\(\s*("(?:[^\\"\r\n\f]|\\[\s\S])*"|'(?:[^\\'\n\r\f]|\\[\s\S])*'|[^)}\s]+)\s*\)(\s*;?)/g;
+        content.replace(reg, function(m, comment, url, last ){
+            if(url){
+                if(m.indexOf('@') === 0){
+                    return '@import url(' + relative_to_file(url) + ')' + last;
+                } else {
+                    return 'url(' + relative_to_file(url) + ')' + last;
+                }
+            } else {
+                return m;
+            }
+        });
+
         file.setContent(content);
     }
 
