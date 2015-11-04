@@ -1,5 +1,6 @@
 {
   "name": "fis-postprocesser-cdnmarker",
+  "version": "1.0.2",
   "description": "mark resource if use cdn, then modify css resource with relative resource path embaed",
   "main": "index.js",
   "scripts": {
