@@ -68,11 +68,11 @@ module.exports = function( ret, conf, settings, opt ) {
             var map_node = res[file.getId()];
             if( 'useCdn' in file ){
                 map_node.useCdn = file.useCdn ? 1 : 0;
-
-                if( file.useCdn && file.type == 'css'){
-                    absolutePathToRelativePath(file);
-                }
             }
+        }
+
+        if( file.type == 'css'){
+            absolutePathToRelativePath(file);
         }
     });
 
@@ -80,9 +80,9 @@ module.exports = function( ret, conf, settings, opt ) {
         if( 'useCdn' in pkg ) {
             var pkg_recode = mpkg[pack_map.fileToPack[pkg.getId()].id];
             pkg_recode.useCdn = pkg.useCdn ? 1 : 0;
-            if( pkg.useCdn && pkg.type == 'css'){
-                absolutePathToRelativePath(pkg);
-            }
+        }
+        if( pkg.type == 'css'){
+            absolutePathToRelativePath(pkg);
         }
     });
 }

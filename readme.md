@@ -24,6 +24,7 @@ fis.config.merge({
     roadmap: {
         path : [{
             reg : '**.css',
+            release: '$&', // for some fis-plus version's bug
             useCdn : true
         }]
     }
@@ -39,7 +40,7 @@ fis.config.merge({
       "uri": "/static/css/mod.css",
       "type": "css",
       "pkg": "global:p0",
-      "useCdn": true
+      "useCdn": 1
   },
   ...
 }
@@ -60,7 +61,7 @@ fis.config.merge({
               "global:static/css/grid.css",
               "global:static/css/mod.css"
           ],
-          "useCdn": true
+          "useCdn": 1
       },
   }
   ...
